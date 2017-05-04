@@ -14,9 +14,9 @@
 		CA25E8061EBAD9F000A5CF2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA25E8051EBAD9F000A5CF2F /* Assets.xcassets */; };
 		CA25E8091EBAD9F000A5CF2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA25E8071EBAD9F000A5CF2F /* LaunchScreen.storyboard */; };
 		CA25E8151EBAF62900A5CF2F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25E8141EBAF62900A5CF2F /* UIColor+Extension.swift */; };
-		CA27D4891EBB760000E5D17A /* LXPageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27D4861EBB760000E5D17A /* LXPageCollectionView.swift */; };
-		CA27D48A1EBB760000E5D17A /* LXPageCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27D4871EBB760000E5D17A /* LXPageCollectionViewLayout.swift */; };
-		CA27D48B1EBB760000E5D17A /* LXPageCollectionViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27D4881EBB760000E5D17A /* LXPageCollectionViewStyle.swift */; };
+		CA27D4901EBB7C5000E5D17A /* LXPageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27D48D1EBB7C5000E5D17A /* LXPageCollectionView.swift */; };
+		CA27D4911EBB7C5000E5D17A /* LXPageCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27D48E1EBB7C5000E5D17A /* LXPageCollectionViewLayout.swift */; };
+		CA27D4921EBB7C5000E5D17A /* LXPageCollectionViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27D48F1EBB7C5000E5D17A /* LXPageCollectionViewStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +30,9 @@
 		CA25E8081EBAD9F000A5CF2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA25E80A1EBAD9F000A5CF2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA25E8141EBAF62900A5CF2F /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		CA27D4861EBB760000E5D17A /* LXPageCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPageCollectionView.swift; sourceTree = "<group>"; };
-		CA27D4871EBB760000E5D17A /* LXPageCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPageCollectionViewLayout.swift; sourceTree = "<group>"; };
-		CA27D4881EBB760000E5D17A /* LXPageCollectionViewStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPageCollectionViewStyle.swift; sourceTree = "<group>"; };
+		CA27D48D1EBB7C5000E5D17A /* LXPageCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPageCollectionView.swift; sourceTree = "<group>"; };
+		CA27D48E1EBB7C5000E5D17A /* LXPageCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPageCollectionViewLayout.swift; sourceTree = "<group>"; };
+		CA27D48F1EBB7C5000E5D17A /* LXPageCollectionViewStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPageCollectionViewStyle.swift; sourceTree = "<group>"; };
 		CEE3478F2395939F631ADA3D /* Pods_LXPageCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXPageCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -86,7 +86,7 @@
 		CA25E7FD1EBAD9F000A5CF2F /* LXPageCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				CA27D4851EBB760000E5D17A /* LXPageCollectionViewLib */,
+				CA27D48C1EBB7C5000E5D17A /* LXPageCollectionViewLib */,
 				CA25E7FE1EBAD9F000A5CF2F /* AppDelegate.swift */,
 				CA25E8001EBAD9F000A5CF2F /* ViewController.swift */,
 				CA25E8141EBAF62900A5CF2F /* UIColor+Extension.swift */,
@@ -98,12 +98,12 @@
 			path = LXPageCollectionView;
 			sourceTree = "<group>";
 		};
-		CA27D4851EBB760000E5D17A /* LXPageCollectionViewLib */ = {
+		CA27D48C1EBB7C5000E5D17A /* LXPageCollectionViewLib */ = {
 			isa = PBXGroup;
 			children = (
-				CA27D4861EBB760000E5D17A /* LXPageCollectionView.swift */,
-				CA27D4871EBB760000E5D17A /* LXPageCollectionViewLayout.swift */,
-				CA27D4881EBB760000E5D17A /* LXPageCollectionViewStyle.swift */,
+				CA27D48D1EBB7C5000E5D17A /* LXPageCollectionView.swift */,
+				CA27D48E1EBB7C5000E5D17A /* LXPageCollectionViewLayout.swift */,
+				CA27D48F1EBB7C5000E5D17A /* LXPageCollectionViewStyle.swift */,
 			);
 			path = LXPageCollectionViewLib;
 			sourceTree = "<group>";
@@ -233,11 +233,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA25E8011EBAD9F000A5CF2F /* ViewController.swift in Sources */,
-				CA27D4891EBB760000E5D17A /* LXPageCollectionView.swift in Sources */,
-				CA27D48A1EBB760000E5D17A /* LXPageCollectionViewLayout.swift in Sources */,
-				CA27D48B1EBB760000E5D17A /* LXPageCollectionViewStyle.swift in Sources */,
+				CA27D4911EBB7C5000E5D17A /* LXPageCollectionViewLayout.swift in Sources */,
+				CA27D4901EBB7C5000E5D17A /* LXPageCollectionView.swift in Sources */,
 				CA25E7FF1EBAD9F000A5CF2F /* AppDelegate.swift in Sources */,
 				CA25E8151EBAF62900A5CF2F /* UIColor+Extension.swift in Sources */,
+				CA27D4921EBB7C5000E5D17A /* LXPageCollectionViewStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
