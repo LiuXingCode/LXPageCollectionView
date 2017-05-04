@@ -34,6 +34,8 @@ class LXPageCollectionView: UIView {
     
     fileprivate var layout : LXPageCollectionViewLayout
     
+    fileprivate var style : LXPageCollectionViewStyle
+    
     fileprivate lazy var collectionView : UICollectionView = {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.layout)
         collectionView.dataSource = self
@@ -47,7 +49,10 @@ class LXPageCollectionView: UIView {
     
     fileprivate lazy var pageControl : UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.addTarget(self, action: #selector(pageControlClick(pageControl:)), for: UIControlEvents.valueChanged)
+        pageControl.currentPageIndicatorTintColor = self.style.pageControlSelectedColor
+        pageControl.pageIndicatorTintColor = self.style.pageControlNormalColor
+        pageControl.isEnabled = false
+//        pageControl.addTarget(self, action: #selector(pageControlClick(pageControl:)), for: UIControlEvents.valueChanged)
         return pageControl
     }()
     
@@ -58,8 +63,9 @@ class LXPageCollectionView: UIView {
         return sectionIndexs
     }()
 
-    init(frame: CGRect, layout: LXPageCollectionViewLayout) {
+    init(frame: CGRect, layout: LXPageCollectionViewLayout, style: LXPageCollectionViewStyle) {
         self.layout = layout
+        self.style = style
         super.init(frame: frame)
         setupUI()
     }
@@ -70,8 +76,10 @@ class LXPageCollectionView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.collectionView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height - 20)
-        self.pageControl.frame = CGRect(x: 0, y: bounds.height - 20, width: bounds.width, height: 20)
+        self.collectionView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: style.isShowPageControl ? bounds.height - 20 : bounds.height)
+        if style.isShowPageControl {
+            self.pageControl.frame = CGRect(x: 0, y: bounds.height - 20, width: bounds.width, height: 20)
+        }
     }
 
 }
@@ -79,21 +87,23 @@ class LXPageCollectionView: UIView {
 extension LXPageCollectionView {
     
     fileprivate func setupUI() {
-        addSubview(collectionView)
-        addSubview(pageControl)
         backgroundColor = UIColor.lightGray
+        addSubview(collectionView)
+        if style.isShowPageControl {
+            addSubview(pageControl)
+        }
     }
     
-    @objc fileprivate func pageControlClick(pageControl: UIPageControl){
-        var totalPage = 0
-        for i in 0..<currentSection {
-            let itemCounts = collectionView.numberOfItems(inSection: i)
-            totalPage += (itemCounts - 1) / (layout.columnCount * layout.rowCount) + 1
-        }
-        sectionIndexs[currentSection] = pageControl.currentPage
-        totalPage += pageControl.currentPage
-        collectionView.setContentOffset(CGPoint(x: CGFloat(totalPage) * bounds.width, y: 0), animated: false)
-    }
+//    @objc fileprivate func pageControlClick(pageControl: UIPageControl){
+//        var totalPage = 0
+//        for i in 0..<currentSection {
+//            let itemCounts = collectionView.numberOfItems(inSection: i)
+//            totalPage += (itemCounts - 1) / (layout.columnCount * layout.rowCount) + 1
+//        }
+//        sectionIndexs[currentSection] = pageControl.currentPage
+//        totalPage += pageControl.currentPage
+//        collectionView.setContentOffset(CGPoint(x: CGFloat(totalPage) * bounds.width, y: 0), animated: false)
+//    }
 }
 
 //MARK:- 外部调用方法
@@ -123,9 +133,11 @@ extension LXPageCollectionView {
         }
         totalPage += sectionIndexs[currentSection]
         collectionView.setContentOffset(CGPoint(x: CGFloat(totalPage) * bounds.width, y: 0), animated: false)
-        let itemsCount = collectionView.numberOfItems(inSection: currentSection)
-        pageControl.numberOfPages = (itemsCount - 1) / (layout.columnCount * layout.rowCount) + 1
-        pageControl.currentPage = sectionIndexs[currentSection]
+        if style.isShowPageControl {
+            let itemsCount = collectionView.numberOfItems(inSection: currentSection)
+            pageControl.numberOfPages = (itemsCount - 1) / (layout.columnCount * layout.rowCount) + 1
+            pageControl.currentPage = sectionIndexs[currentSection]
+        }
     }
 }
 
@@ -140,7 +152,7 @@ extension LXPageCollectionView : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let itemsCount = dataSource?.pageCollectionView(self, numberOfItemsInSection: section) ?? 0
-        if section == currentSection {
+        if section == currentSection && style.isShowPageControl {
             pageControl.numberOfPages = (itemsCount - 1) / (layout.columnCount * layout.rowCount) + 1
         }
         return itemsCount
@@ -175,13 +187,15 @@ extension LXPageCollectionView : UICollectionViewDelegate {
         guard let indexPath = collectionView.indexPathForItem(at: CGPoint(x: offsetX + layout.edgeInsets.left + 1, y: layout.edgeInsets.top + 1)) else {
             return
         }
-        let itemsCount = collectionView.numberOfItems(inSection: indexPath.section)
-        pageControl.numberOfPages = (itemsCount - 1) / (layout.columnCount * layout.rowCount) + 1
-        pageControl.currentPage = indexPath.item / (layout.columnCount * layout.rowCount)
-        sectionIndexs[indexPath.section] = pageControl.currentPage
+        sectionIndexs[indexPath.section] = indexPath.item / (layout.columnCount * layout.rowCount)
         if currentSection != indexPath.section {
             currentSection = indexPath.section
             delegate?.pageCollectionView?(self, sectionChangedAt: currentSection)
+        }
+        if style.isShowPageControl {
+            let itemsCount = collectionView.numberOfItems(inSection: indexPath.section)
+            pageControl.numberOfPages = (itemsCount - 1) / (layout.columnCount * layout.rowCount) + 1
+            pageControl.currentPage = indexPath.item / (layout.columnCount * layout.rowCount)
         }
     }
     

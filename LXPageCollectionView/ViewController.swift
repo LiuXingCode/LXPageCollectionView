@@ -15,9 +15,12 @@ class ViewController: UIViewController {
     
     fileprivate lazy var pageCollectionView : LXPageCollectionView = {
         let layout = LXPageCollectionViewLayout()
-        layout.columnMargin = 15
+        layout.columnMargin = 5
         layout.rowMargin = 5
-        let pageCollectionView = LXPageCollectionView(frame: CGRect.zero, layout: layout)
+        layout.columnCount = 7
+        layout.rowCount = 4
+        let style = LXPageCollectionViewStyle()
+        let pageCollectionView = LXPageCollectionView(frame: CGRect.zero, layout: layout, style: style)
         pageCollectionView.dataSource = self
         pageCollectionView.delegate = self
         pageCollectionView.registerCellClass(UICollectionViewCell.self, identifier: kPageContentCellID)
@@ -26,9 +29,10 @@ class ViewController: UIViewController {
     
     fileprivate lazy var segmentTitleView : LXSegmentTitleView = {
         let segmentTitleView = LXSegmentTitleView(frame: CGRect.zero)
-        segmentTitleView.backgroundColor = UIColor.purple
+        segmentTitleView.backgroundColor = UIColor(r: 244, g: 244, b: 244)
+        segmentTitleView.indicatorExtraW = 10
         segmentTitleView.delegate = self
-        segmentTitleView.segmentTitles = ["A组", "B组", "C组", "D组"]
+        segmentTitleView.segmentTitles = ["A组", "B组", "C组", "D组", "E组", "F组", "G组", "H组"]
         return segmentTitleView
     }()
 
@@ -39,7 +43,7 @@ class ViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        segmentTitleView.frame = CGRect(x: 0, y: 40, width: self.view.bounds.width, height: 50)
+        segmentTitleView.frame = CGRect(x: 0, y: 40, width: self.view.bounds.width, height: 35)
         pageCollectionView.frame = CGRect(x: 0, y: segmentTitleView.frame.maxY, width: self.view.bounds.width, height: 250)
     }
 
@@ -57,7 +61,7 @@ extension ViewController {
 extension ViewController : LXPageCollectionViewDataSource {
     
     func numberOfSections(in pageCollectionView: LXPageCollectionView) -> Int {
-        return 4
+        return 8
     }
     
     func pageCollectionView(_ pageCollectionView: LXPageCollectionView, numberOfItemsInSection section: Int) -> Int {
