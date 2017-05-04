@@ -1,0 +1,12 @@
+PODS:
+  - LXScrollContentView (1.1)
+
+DEPENDENCIES:
+  - LXScrollContentView
+
+SPEC CHECKSUMS:
+  LXScrollContentView: 9ed0fc4aee01fbe3a85f48057ca9f3aeb97f5d4a
+
+PODFILE CHECKSUM: 3217f146c940a16c849a05674a68878ebac6d30a
+
+COCOAPODS: 1.2.0

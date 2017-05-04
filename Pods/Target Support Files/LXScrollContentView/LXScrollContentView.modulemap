@@ -1,0 +1,6 @@
+framework module LXScrollContentView {
+  umbrella header "LXScrollContentView-umbrella.h"
+
+  export *
+  module * { export * }
+}

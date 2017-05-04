@@ -1,0 +1,6 @@
+framework module Pods_LXPageCollectionView {
+  umbrella header "Pods-LXPageCollectionView-umbrella.h"
+
+  export *
+  module * { export * }
+}
